@@ -22,10 +22,8 @@ public class TestListar {
 			userPosJavas = userPosJavaDAO.listar();
 
 			for (UserPosJava userPosJava : userPosJavas) {
-
 				System.out.println(userPosJava.toString());
 				System.out.println("----------------------------------");
-
 			}
 
 		} catch (SQLException e) {

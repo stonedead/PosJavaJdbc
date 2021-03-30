@@ -32,7 +32,7 @@ public class UserPosJavaDAO {
 			statement.execute(); // executa o comando no banco de dados
 
 			this.connection.commit(); // salva os dados no banco
-			
+
 			System.out.println("Dados gravados com sucesso ...");
 
 		} catch (SQLException e) {
@@ -46,31 +46,49 @@ public class UserPosJavaDAO {
 		}
 
 	}
-	
+
 	public List<UserPosJava> listar() throws SQLException {
-		
+
 		List<UserPosJava> list = new ArrayList<UserPosJava>();
-		
+
 		String sqlStatement = "select * from userposjava";
-		
+
 		PreparedStatement statement = connection.prepareStatement(sqlStatement);
-		
+
 		ResultSet resultSet = statement.executeQuery();
-		
+
 		while (resultSet.next()) {
+
 			UserPosJava posJava = new UserPosJava();
 			posJava.setId(resultSet.getLong("id"));
 			posJava.setNome(resultSet.getString("nome"));
 			posJava.setEmail(resultSet.getString("email"));
-			
+
 			list.add(posJava);
 		}
-		
+
 		return list;
 	}
-	
-	
-	
-	
+
+	public UserPosJava buscarPorId(Long Id) throws SQLException {
+
+		UserPosJava retorno = new UserPosJava();
+
+		String sqlStatement = "select * from userposjava where id = " + Id;
+
+		PreparedStatement statement = connection.prepareStatement(sqlStatement);
+
+		ResultSet resultSet = statement.executeQuery();
+
+		while (resultSet.next()) {
+
+			retorno.setId(resultSet.getLong("id"));
+			retorno.setNome(resultSet.getString("nome"));
+			retorno.setEmail(resultSet.getString("email"));
+
+		}
+
+		return retorno;
+	}
 
 }

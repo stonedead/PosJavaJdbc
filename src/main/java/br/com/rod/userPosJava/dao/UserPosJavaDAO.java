@@ -90,7 +90,7 @@ public class UserPosJavaDAO {
 		return retorno;
 	}
 
-	public void AtualizarNome(UserPosJava userPosJava) {
+	public void atualizarNome(UserPosJava userPosJava) {
 
 		try {
 
@@ -117,6 +117,35 @@ public class UserPosJavaDAO {
 
 			e.printStackTrace();
 		}
+
+	}
+
+	public void deletar(Long id) {
+
+		try {
+			String sql = "delete from userposjava where id = " + id;
+
+			PreparedStatement statement;
+
+			statement = connection.prepareStatement(sql);
+
+			statement.execute();
+
+			connection.commit();
+			
+			System.out.println("Registro deletado com sucesso !!!");
+
+		} catch (SQLException e) {
+			try {
+				System.out.println("Não foi possível deletar o registro!!!");
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+
+	
 
 	}
 

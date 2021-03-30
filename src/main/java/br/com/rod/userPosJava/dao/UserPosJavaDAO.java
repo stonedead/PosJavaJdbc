@@ -91,4 +91,34 @@ public class UserPosJavaDAO {
 		return retorno;
 	}
 
+	public void AtualizarNome(UserPosJava userPosJava) {
+
+		try {
+
+			String sql = "update userposjava set nome = ? where id = " + userPosJava.getId();
+
+			PreparedStatement statement = connection.prepareStatement(sql);
+
+			statement.setString(1, userPosJava.getNome());
+
+			statement.execute();
+
+			connection.commit();
+
+			System.out.println("Update do nome realizado com sucesso !!!");
+
+		} catch (SQLException e) {
+
+			try {
+				connection.rollback();
+				System.out.println("Update do nome não foi realizado !!!");
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+		}
+
+	}
+
 }

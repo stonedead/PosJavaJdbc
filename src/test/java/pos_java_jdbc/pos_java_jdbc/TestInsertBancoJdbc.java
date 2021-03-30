@@ -13,7 +13,6 @@ public class TestInsertBancoJdbc {
 		UserPosJava posJava = new UserPosJava();
 		UserPosJavaDAO posJavaDAO = new UserPosJavaDAO();
 		
-		posJava.setId(5L);
 		posJava.setNome("Thiago Gomes Pereira");
 		posJava.setEmail("thigope@gmail.com");
 		

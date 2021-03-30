@@ -20,14 +20,13 @@ public class UserPosJavaDAO {
 
 	public void salvar(UserPosJava userPosJava) {
 
-		String sql = "insert into userposjava (id, nome, email) values (?,?,?)";
+		String sql = "insert into userposjava (nome, email) values (?,?)";
 
 		try {
 
 			PreparedStatement statement = this.connection.prepareStatement(sql);
-			statement.setLong(1, userPosJava.getId());
-			statement.setString(2, userPosJava.getNome());
-			statement.setString(3, userPosJava.getEmail());
+			statement.setString(1, userPosJava.getNome());
+			statement.setString(2, userPosJava.getEmail());
 
 			statement.execute(); // executa o comando no banco de dados
 

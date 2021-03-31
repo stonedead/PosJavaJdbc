@@ -16,7 +16,7 @@ public class TestBuscarPorId {
 		UserPosJava userPosJava;
 		
 		try {
-			userPosJava=userPosJavaDAO.buscarPorId(1L);
+			userPosJava=userPosJavaDAO.buscarPorId(2L);
 			System.out.println(userPosJava);
 		} catch (SQLException e) {
 			e.printStackTrace();

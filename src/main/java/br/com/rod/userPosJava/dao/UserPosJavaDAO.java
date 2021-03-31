@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rod.connectionJdbc.SingleConnection;
+import br.com.rod.model.BeanUserFone;
 import br.com.rod.model.UserPosJava;
 
 public class UserPosJavaDAO {
@@ -132,7 +133,7 @@ public class UserPosJavaDAO {
 			statement.execute();
 
 			connection.commit();
-			
+
 			System.out.println("Registro deletado com sucesso !!!");
 
 		} catch (SQLException e) {
@@ -145,8 +146,53 @@ public class UserPosJavaDAO {
 			e.printStackTrace();
 		}
 
-	
-
 	}
 
+	public List<BeanUserFone> listarUserFone() throws SQLException {
+
+		List<BeanUserFone> list = new ArrayList<BeanUserFone>();
+
+		String sql = "select nome, email, tipo, numero from telefoneuser as fone inner join userposjava as userp on fone.usuariopessoa = userp.id";
+
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet resultSet = statement.executeQuery();
+
+		while (resultSet.next()) {
+
+			BeanUserFone beanUserFone = new BeanUserFone();
+			beanUserFone.setNome(resultSet.getString("nome"));
+			beanUserFone.setEmail(resultSet.getString("email"));
+			beanUserFone.setTipo(resultSet.getString("tipo"));
+			beanUserFone.setNumero(resultSet.getString("numero"));
+			
+			list.add(beanUserFone);
+		}
+
+		return list;
+
+	}
+	
+	public List<BeanUserFone> buscarUserFonePorId(Long id) throws SQLException {
+
+		List<BeanUserFone> list = new ArrayList<BeanUserFone>();
+
+		String sql = "select nome, email, tipo, numero from telefoneuser as fone inner join userposjava as userp on fone.usuariopessoa = userp.id where userp.id = " + id;
+
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet resultSet = statement.executeQuery();
+
+		while (resultSet.next()) {
+
+			BeanUserFone beanUserFone = new BeanUserFone();
+			beanUserFone.setNome(resultSet.getString("nome"));
+			beanUserFone.setEmail(resultSet.getString("email"));
+			beanUserFone.setTipo(resultSet.getString("tipo"));
+			beanUserFone.setNumero(resultSet.getString("numero"));
+			
+			list.add(beanUserFone);
+		}
+
+		return list;
+
+	}	
 }

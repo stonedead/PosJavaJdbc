@@ -27,7 +27,7 @@ public class UpdateNome {
 			
 			System.out.println();
 			
-			userPosJavaDAO.atualizarNome(userPosJava);;
+			userPosJavaDAO.atualizarNome(userPosJava);
 			
 			System.out.println();
 			
